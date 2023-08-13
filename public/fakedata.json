@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "Product 1",
+    "price": 19.99,
+    "description": "This is a high-quality product that will meet your needs.",
+    "img": "https://picsum.photos/400/300/?random",
+    "title": "Product Title 1"
+  },
+  {
+    "id": 2,
+    "name": "Product 2",
+    "price": 29.99,
+    "description": "Upgrade your life with our amazing product.",
+    "img": "https://picsum.photos/400/300/?random",
+    "title": "Product Title 2"
+  },
+  {
+    "id": 3,
+    "name": "Product 3",
+    "price": 39.99,
+    "description": "Experience the future with our innovative product.",
+    "img": "https://picsum.photos/400/300/?random",
+    "title": "Product Title 3"
+  },
+  {
+    "id": 4,
+    "name": "Product 4",
+    "price": 49.99,
+    "description": "Discover the beauty of simplicity with our elegant product.",
+    "img": "https://picsum.photos/400/300/?random",
+    "title": "Product Title 4"
+  },
+  {
+    "id": 5,
+    "name": "Product 5",
+    "price": 59.99,
+    "description": "Unleash your creativity with our versatile product.",
+    "img": "https://picsum.photos/400/300/?random",
+    "title": "Product Title 5"
+  }
+]
