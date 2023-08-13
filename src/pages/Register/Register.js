@@ -1,7 +1,33 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../authProvider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Register = () => {
+  const navigate = useNavigate();
+  const email = useRef();
+  const password = useRef();
+  const { signUp, setUser } = useContext(AuthContext);
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+    signUp(email.current.value, password.current.value)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        setUser(user);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "you have registered successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+
+        navigate("/");
+      })
+      .catch((err) => console.log(err, "line 18"));
+  };
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -10,20 +36,25 @@ const Register = () => {
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
               Create and account
             </h1>
-            <form className="space-y-4 md:space-y-6" action="#">
+            <form
+              onSubmit={handleRegister}
+              className="space-y-4 md:space-y-6"
+              action="#"
+            >
               <div>
                 <label
-                  for="number"
+                  for="email"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  Your Number
+                  Your email
                 </label>
                 <input
-                  type="number"
+                  type="email"
                   name="number"
                   id="number"
+                  ref={email}
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="01XXXXXXX"
+                  placeholder="email"
                   required=""
                 />
               </div>
@@ -35,6 +66,7 @@ const Register = () => {
                   Password
                 </label>
                 <input
+                  ref={password}
                   type="password"
                   name="password"
                   id="password"
