@@ -6,7 +6,7 @@ import useGetProducts from "../../utilities/useGetProducts";
 const Products = () => {
   const [products, setProdcuts] = useState([]);
   useGetProducts(setProdcuts);
-  console.log(products);
+
   return (
     <div className="grid grid-cols-3 gap-y-8 ">
       {products.map((product) => (

@@ -4,7 +4,7 @@ function useGetProducts(setProdcuts) {
   useEffect(() => {
     fetch(`/fakedata.json`)
       .then((res) => res.json())
-      .then((data) => setProdcuts(data, "line 8"));
+      .then((data) => setProdcuts(data));
   }, [setProdcuts]);
 }
 export default useGetProducts;
