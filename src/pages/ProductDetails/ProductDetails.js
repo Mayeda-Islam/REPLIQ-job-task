@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import useGetProducts from "../../utilities/useGetProducts";
 import { Link, useParams } from "react-router-dom";
 import ProductCard from "../../Shared/ProductCard/ProductCard";
+import { useCart } from "../../utilities/cartContext";
 
 const ProductDetails = () => {
   const [products, setProdcuts] = useState([]);
@@ -10,7 +11,7 @@ const ProductDetails = () => {
   const singleProductDetails = products.find(
     (product) => parseInt(product?.id) === parseInt(productId)
   );
-  console.log(singleProductDetails);
+  const { addItemToCart } = useCart();
 
   return (
     <div className="max-w-screen-xl h-screen flex justify-center items-center  mx-auto p-4">
@@ -33,8 +34,11 @@ const ProductDetails = () => {
             </div>
             <div className="">
               <Link to={""}>
-                <button className="btn bg-blue-400 p-2 rounded-sm my-2 ">
-                  Buy Now
+                <button
+                  onClick={() => addItemToCart(singleProductDetails)}
+                  className="btn bg-blue-400 p-2 rounded-sm my-2 "
+                >
+                  Add to cart
                 </button>
               </Link>
             </div>

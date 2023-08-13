@@ -5,6 +5,9 @@ import Register from "../pages/Register/Register";
 import Login from "../pages/Login/Login";
 import ProductDetails from "../pages/ProductDetails/ProductDetails";
 
+import AdminDashboard from "../components/AdminDashboard/AdminDashboard";
+import AdminLayout from "../Layout/AdminLayout/AdminLayout";
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -27,6 +30,15 @@ export const router = createBrowserRouter([
         path: "/login",
         element: <Login />,
       },
+    ],
+  },
+  {
+    path: "/admin/",
+    element: <AdminLayout></AdminLayout>,
+    children: [
+      { path: "", element: <AdminDashboard /> },
+      { path: "customers", element: <AdminDashboard /> },
+      { path: "adminOrder", element: <AdminDashboard /> },
     ],
   },
 ]);

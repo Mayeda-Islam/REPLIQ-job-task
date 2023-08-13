@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { BsFillCartFill } from "react-icons/bs";
+import { useCart } from "../../utilities/cartContext";
+const Header = ({ setIsDrawerOpen, isDrawerOpen }) => {
+  const { cartItems } = useCart();
 
-const Header = () => {
+  const handleToggleDrawer = () => {
+    setIsDrawerOpen(!isDrawerOpen);
+  };
+
   return (
     <nav className="bg-white border-gray-200 dark:bg-gray-900">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -29,7 +36,7 @@ const Header = () => {
             <li>
               <Link
                 to={"/"}
-                className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500"
+                className="block py-4 px-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500"
                 aria-current="page"
               >
                 Home
@@ -66,6 +73,19 @@ const Header = () => {
               >
                 Register
               </Link>
+            </li>
+            <li>
+              <div
+                onClick={handleToggleDrawer}
+                className="block cursor-pointer py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+              >
+                <div className="relative">
+                  <BsFillCartFill className="text-3xl" />
+                  <span className="absolute top-0 -right-2 -mt-1 -mr-1 px-2 py-1 bg-red-500 rounded-full text-white text-xs">
+                    {cartItems.length}
+                  </span>
+                </div>
+              </div>
             </li>
           </ul>
         </div>
